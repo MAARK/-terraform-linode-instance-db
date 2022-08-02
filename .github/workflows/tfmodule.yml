@@ -54,15 +54,15 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.15
+          ## Removing Go tests for now
+   #- name: Setup Dependencies
+   #  working-directory: tests
+   #  #run:  go get -v -t -d && go mod tidy
+   #  run: go mod init tests
 
-    - name: Setup Dependencies
-      working-directory: tests
-      #run:  go get -v -t -d && go mod tidy
-      run: go mod init tests
-
-    - name: Test
-      working-directory: tests
-      run: go test -v
+   #- name: Test
+   #  working-directory: tests
+   #  run: go test -v
 
     - name: Bump version and push tag
       id: tag_version
