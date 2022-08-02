@@ -56,3 +56,37 @@ variable "authorized_keys" {
 }
 
 #db settings
+
+variable "db_engine_id" {
+  default     = "mysql/8.0.26"
+  type        = string
+  description = "Options avaible by running `linode-cli databases engines`"
+}
+
+variable "db_type" {
+  default     = "g6-nanode-1"
+  type        = string
+  description = "Options avaible by running `linode-cli databases types`"
+}
+
+variable "db_cluster_size" {
+  default     = 1
+  type        = number
+  description = "number of instance to run in the db cluster"
+}
+
+variable "db_replication_type" {
+  default     = "none"
+  description = "(Optional) The replication method used for the Managed Database. (none, asynch, semi_synch; default none)"
+  type        = string
+}
+
+variable "db_encrytion" {
+  default = true
+  type    = bool
+}
+
+variable "db_ssl" {
+  default = true
+  type    = bool
+}

@@ -1,9 +1,10 @@
-output "instance_id" {
-  value       = linode_instance.this.id
-  description = "linode instance ID"
+output "instance" {
+  value       = try(linode_instance.this, "")
+  description = "linode instance info.https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance# "
+  sensitive   = true
 }
-
-output "instance_details" {
-  value       = data.linode_instances.this
-  description = "detailed instance info"
+output "database" {
+  value       = try(linode_database_mysql.this, "")
+  description = "linode database info.https://registry.terraform.io/providers/linode/linode/latest/docs/resources/database# "
+  sensitive   = true
 }

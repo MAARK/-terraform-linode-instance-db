@@ -12,7 +12,7 @@ repos:
     - id: end-of-file-fixer
 
 - repo: https://github.com/gruntwork-io/pre-commit
-  rev: v0.1.17 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+  rev: v0.1.17  # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
   hooks:
     - id: tflint
       args:
@@ -23,6 +23,8 @@ repos:
       args:
         - "-recursive"
         - "-write"
+          ##    - id: gofmt
+    - id: terragrunt-hclfmt
 
 - repo: https://github.com/terraform-docs/terraform-docs
   rev: "v0.16.0"

@@ -13,7 +13,7 @@ resource "linode_instance" "this" {
   region          = var.region
   type            = var.instance_type
   authorized_keys = var.authorized_keys
-  root_pass       = random_string.inst_root_passord
+  root_pass       = random_string.inst_root_passord.result
   stackscript_id  = linode_stackscript.this.id
   tags            = var.tags
 }
@@ -24,16 +24,30 @@ resource "linode_stackscript" "this" {
   script      = <<EOF
 #!/bin/bash
 
-$var.stackscript_extend
+${var.stackscript_extend}
 
 EOF
   images      = ["linode/ubuntu18.04", "linode/ubuntu16.04lts"]
   rev_note    = "initial version"
 }
 
-data "linode_instances" "this" {
-  filter {
-    name   = "id"
-    values = linode_instance.this.id
+resource "linode_database_mysql" "this" {
+  label     = var.label
+  engine_id = var.db_engine_id
+  region    = var.region
+  type      = var.db_type
+
+  cluster_size     = var.db_cluster_size
+  encrypted        = var.db_encrytion
+  replication_type = var.db_replication_type
+  ssl_connection   = var.db_ssl
+  /* TODO update blocks
+  updates {
+    day_of_week   = "saturday"
+    duration      = 1
+    frequency     = "monthly"
+    hour_of_day   = 22
+    week_of_month = 2
   }
+  */
 }
