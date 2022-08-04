@@ -60,4 +60,5 @@ No modules.
 |------|-------------|
 | <a name="output_database"></a> [database](#output\_database) | linode database info.https://registry.terraform.io/providers/linode/linode/latest/docs/resources/database# |
 | <a name="output_instance"></a> [instance](#output\_instance) | linode instance info.https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance# |
+| <a name="output_instance_tags"></a> [instance\_tags](#output\_instance\_tags) | List of tags attached tot eh instance |
 <!-- END_TF_DOCS -->

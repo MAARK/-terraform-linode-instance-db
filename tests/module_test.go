@@ -6,6 +6,7 @@ import (
 
 	"github.com/gruntwork-io/terratest/modules/random"
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 /* TODO random region
@@ -38,4 +39,8 @@ func TestLinodeInstanceDB(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
+	// Run `terraform output` to get the value of an output variable
+	tags := terraform.Output(t, terraformOptions, "instance_tags")
+	nameTag := tags[0]
+	assert.Equal(t, expectedTag, nameTag)
 }
