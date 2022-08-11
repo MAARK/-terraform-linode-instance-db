@@ -10,8 +10,9 @@ variable "region" {
 
 # Instance Settings
 variable "image" {
-  default = ""
-  type    = string
+  default     = "linode/alpine3.16"
+  type        = string
+  description = "Options avaible by running `linode-cli images list`"
 }
 
 variable "tags" {
@@ -20,7 +21,7 @@ variable "tags" {
 }
 
 variable "instance_type" {
-
+  type    = string
   default = "g6-standard-1"
 }
 
@@ -89,4 +90,10 @@ variable "db_encrytion" {
 variable "db_ssl" {
   default = true
   type    = bool
+}
+
+variable "db_name" {
+  default     = ""
+  type        = string
+  description = "default database name to use. Will use Label variable if not set"
 }

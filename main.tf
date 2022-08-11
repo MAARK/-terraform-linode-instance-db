@@ -1,3 +1,7 @@
+locals {
+  db_name = var.db_name != "" ? var.db_name : var.label
+}
+
 resource "random_string" "db_passord" {
   length  = 32
   special = true
@@ -21,14 +25,18 @@ resource "linode_instance" "this" {
 resource "linode_stackscript" "this" {
   label       = var.label
   description = "Connects database ${var.label} with trhe instance."
-  script      = <<EOF
-#!/bin/bash
-
-${var.stackscript_extend}
-
-EOF
-  images      = ["linode/ubuntu18.04", "linode/ubuntu16.04lts"]
-  rev_note    = "initial version"
+  script = templatefile(
+    "${path.module}/templates/stack_script.sh.tftpl",
+    {
+      db_host            = linode_database_mysql.this.host_primary,
+      db_user            = linode_database_mysql.this.root_username,
+      db_name            = local.db_name,
+      db_password        = linode_database_mysql.this.root_password,
+      stackscript_extend = try(var.stackscript_extend, "")
+    }
+  )
+  images   = [var.image]
+  rev_note = "initial version"
 }
 
 resource "linode_database_mysql" "this" {
