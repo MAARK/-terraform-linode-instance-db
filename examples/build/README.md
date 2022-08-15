@@ -1,11 +1,18 @@
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-# Linode Instance and Database Module
+# Example Instance Build
 
-Terraform module  which creates instance(s) and database instance or cluster,
-Optional can put instances behind a load balancer.
+This repo will be used as a template for new Terraform module Github repos.
 
-[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+## Usage
 
+To run this example you need to execute:
+
+```bash
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
+Note that this example may create resources which cost money. Run `terraform destroy` when you don't need these resources.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -43,12 +50,11 @@ No modules.
 | <a name="input_db_cluster_size"></a> [db\_cluster\_size](#input\_db\_cluster\_size) | number of instance to run in the db cluster | `number` | `1` | no |
 | <a name="input_db_encrytion"></a> [db\_encrytion](#input\_db\_encrytion) | n/a | `bool` | `true` | no |
 | <a name="input_db_engine_id"></a> [db\_engine\_id](#input\_db\_engine\_id) | Options avaible by running `linode-cli databases engines` | `string` | `"mysql/8.0.26"` | no |
-| <a name="input_db_name"></a> [db\_name](#input\_db\_name) | default database name to use. Will use Label variable if not set | `string` | `""` | no |
 | <a name="input_db_replication_type"></a> [db\_replication\_type](#input\_db\_replication\_type) | (Optional) The replication method used for the Managed Database. (none, asynch, semi\_synch; default none) | `string` | `"none"` | no |
 | <a name="input_db_ssl"></a> [db\_ssl](#input\_db\_ssl) | n/a | `bool` | `true` | no |
 | <a name="input_db_type"></a> [db\_type](#input\_db\_type) | Options avaible by running `linode-cli databases types` | `string` | `"g6-nanode-1"` | no |
 | <a name="input_group"></a> [group](#input\_group) | n/a | `string` | `""` | no |
-| <a name="input_image"></a> [image](#input\_image) | Options avaible by running `linode-cli images list` | `string` | `"linode/alpine3.16"` | no |
+| <a name="input_image"></a> [image](#input\_image) | Instance Settings | `string` | `""` | no |
 | <a name="input_instance_private_ip"></a> [instance\_private\_ip](#input\_instance\_private\_ip) | n/a | `bool` | `true` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"g6-standard-1"` | no |
 | <a name="input_label"></a> [label](#input\_label) | The base name for the stack | `string` | n/a | yes |
@@ -64,5 +70,4 @@ No modules.
 |------|-------------|
 | <a name="output_database"></a> [database](#output\_database) | linode database info.https://registry.terraform.io/providers/linode/linode/latest/docs/resources/database# |
 | <a name="output_instance"></a> [instance](#output\_instance) | linode instance info.https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance# |
-| <a name="output_instance_tags"></a> [instance\_tags](#output\_instance\_tags) | List of tags attached tot eh instance |
 <!-- END_TF_DOCS -->

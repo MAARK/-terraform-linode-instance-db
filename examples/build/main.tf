@@ -40,12 +40,3 @@ module "this" {
   region = var.region
   tags   = [var.testing_tag]
 }
-
-output "instance" {
-  value     = try(module.this.instance, "instance not found")
-  sensitive = true
-}
-output "db" {
-  value     = try(module.this.database, "database not found")
-  sensitive = true
-}
