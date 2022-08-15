@@ -1,7 +1,10 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-# terraform-<provider>-<module name>
+# Linode Instance and Database Module
 
-This repo will be used as a template for new Terraform module Github repos.
+Terraform module  which creates instance(s) and database instance or cluster,
+Optional can put instances behind a load balancer.
+
+[![SWUbanner](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements

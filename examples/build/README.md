@@ -1,9 +1,18 @@
-
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-# terraform-<provider>-<module name>
+# Example Instance Build
 
 This repo will be used as a template for new Terraform module Github repos.
 
+## Usage
+
+To run this example you need to execute:
+
+```bash
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
+Note that this example may create resources which cost money. Run `terraform destroy` when you don't need these resources.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
