@@ -49,6 +49,7 @@ No modules.
 | <a name="input_db_type"></a> [db\_type](#input\_db\_type) | Options avaible by running `linode-cli databases types` | `string` | `"g6-nanode-1"` | no |
 | <a name="input_group"></a> [group](#input\_group) | n/a | `string` | `""` | no |
 | <a name="input_image"></a> [image](#input\_image) | Options avaible by running `linode-cli images list` | `string` | `"linode/alpine3.16"` | no |
+| <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | number of instances. if more than 1 ins selected a Node ballancer will be created and traffic served through it. | `number` | `1` | no |
 | <a name="input_instance_private_ip"></a> [instance\_private\_ip](#input\_instance\_private\_ip) | n/a | `bool` | `true` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"g6-standard-1"` | no |
 | <a name="input_label"></a> [label](#input\_label) | The base name for the stack | `string` | n/a | yes |

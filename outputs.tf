@@ -5,7 +5,7 @@ output "instance" {
 }
 
 output "instance_tags" {
-  value       = try(flatten(linode_instance.this.tags), "")
+  value       = try(flatten(linode_instance.this[*].tags), "")
   description = "List of tags attached tot eh instance"
 }
 

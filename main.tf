@@ -12,6 +12,7 @@ resource "random_string" "inst_root_passord" {
 }
 
 resource "linode_instance" "this" {
+  count           = var.instance_count
   image           = var.image
   label           = var.label
   region          = var.region

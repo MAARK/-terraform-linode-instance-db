@@ -36,7 +36,8 @@ locals {
 module "this" {
   source = "../../"
 
-  label  = local.label
-  region = var.region
-  tags   = [var.testing_tag]
+  label          = local.label
+  region         = var.region
+  tags           = [var.testing_tag]
+  instance_count = 2
 }

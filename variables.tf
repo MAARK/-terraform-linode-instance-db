@@ -55,6 +55,11 @@ variable "authorized_keys" {
   default = []
   type    = list(any)
 }
+variable "instance_count" {
+  default     = 1
+  type        = number
+  description = "number of instances. if more than 1 ins selected a Node ballancer will be created and traffic served through it."
+}
 
 #db settings
 
