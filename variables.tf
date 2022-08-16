@@ -9,7 +9,7 @@ variable "region" {
 }
 
 # Instance Settings
-variable "image" {
+variable "instance_image" {
   default     = "linode/alpine3.16"
   type        = string
   description = "Options avaible by running `linode-cli images list`"
@@ -101,4 +101,11 @@ variable "db_name" {
   default     = ""
   type        = string
   description = "default database name to use. Will use Label variable if not set"
+}
+
+# LB settings
+variable "lb_client_conn_throttle" {
+  default     = 0
+  type        = number
+  description = "value for Nodebalanacer client_conn_throttle"
 }

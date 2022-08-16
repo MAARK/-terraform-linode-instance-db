@@ -31,6 +31,9 @@ No modules.
 |------|------|
 | [linode_database_mysql.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/database_mysql) | resource |
 | [linode_instance.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance) | resource |
+| [linode_nodebalancer.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer) | resource |
+| [linode_nodebalancer_config.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer_config) | resource |
+| [linode_nodebalancer_node.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer_node) | resource |
 | [linode_stackscript.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/stackscript) | resource |
 | [random_string.db_passord](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [random_string.inst_root_passord](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
@@ -48,11 +51,12 @@ No modules.
 | <a name="input_db_ssl"></a> [db\_ssl](#input\_db\_ssl) | n/a | `bool` | `true` | no |
 | <a name="input_db_type"></a> [db\_type](#input\_db\_type) | Options avaible by running `linode-cli databases types` | `string` | `"g6-nanode-1"` | no |
 | <a name="input_group"></a> [group](#input\_group) | n/a | `string` | `""` | no |
-| <a name="input_image"></a> [image](#input\_image) | Options avaible by running `linode-cli images list` | `string` | `"linode/alpine3.16"` | no |
 | <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | number of instances. if more than 1 ins selected a Node ballancer will be created and traffic served through it. | `number` | `1` | no |
+| <a name="input_instance_image"></a> [instance\_image](#input\_instance\_image) | Options avaible by running `linode-cli images list` | `string` | `"linode/alpine3.16"` | no |
 | <a name="input_instance_private_ip"></a> [instance\_private\_ip](#input\_instance\_private\_ip) | n/a | `bool` | `true` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"g6-standard-1"` | no |
 | <a name="input_label"></a> [label](#input\_label) | The base name for the stack | `string` | n/a | yes |
+| <a name="input_lb_client_conn_throttle"></a> [lb\_client\_conn\_throttle](#input\_lb\_client\_conn\_throttle) | value for Nodebalanacer client\_conn\_throttle | `number` | `0` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) This is the location where the Linode is deployed. Examples are ＂us-east＂, ＂us-west＂, ＂ap-south＂, etc. See all regions here. Changing region forces the creation of a new Linode Instance | `string` | `"us-east"` | no |
 | <a name="input_stackscript_data"></a> [stackscript\_data](#input\_stackscript\_data) | Map of required StackScript UDF data. | `map(any)` | `{}` | no |
 | <a name="input_stackscript_extend"></a> [stackscript\_extend](#input\_stackscript\_extend) | appeded to the base stack script that provides mysql access. | `string` | `""` | no |
