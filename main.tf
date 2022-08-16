@@ -21,6 +21,7 @@ resource "linode_instance" "this" {
   authorized_keys = var.authorized_keys
   root_pass       = random_string.inst_root_passord.result
   stackscript_id  = linode_stackscript.this.id
+  private_ip      = var.instance_private_ip
   tags            = var.tags
 }
 
