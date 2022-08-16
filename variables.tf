@@ -9,7 +9,7 @@ variable "region" {
 }
 
 # Instance Settings
-variable "image" {
+variable "instance_image" {
   default     = "linode/alpine3.16"
   type        = string
   description = "Options avaible by running `linode-cli images list`"
@@ -26,8 +26,20 @@ variable "instance_type" {
 }
 
 variable "instance_private_ip" {
-  type    = bool
-  default = true
+  type        = bool
+  default     = true
+  description = " (Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled"
+}
+
+variable "instance_backups_enabled" {
+  default     = true
+  type        = bool
+  description = "(Optional) If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service"
+}
+variable "instance_watchdog_enabled" {
+  default     = true
+  type        = bool
+  description = "The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly."
 }
 
 variable "group" {
@@ -54,6 +66,11 @@ variable "stackscript_extend" {
 variable "authorized_keys" {
   default = []
   type    = list(any)
+}
+variable "instance_count" {
+  default     = 1
+  type        = number
+  description = "number of instances. if more than 1 ins selected a Node ballancer will be created and traffic served through it."
 }
 
 #db settings
@@ -96,4 +113,29 @@ variable "db_name" {
   default     = ""
   type        = string
   description = "default database name to use. Will use Label variable if not set"
+}
+
+# LB settings
+variable "lb_client_conn_throttle" {
+  default     = 0
+  type        = number
+  description = "value for Nodebalanacer client_conn_throttle"
+}
+
+variable "lb_config_check_path" {
+  default     = "/health"
+  type        = string
+  description = "(Optional) The URL path to check on each backend. If the backend does not respond to this request it is considered to be down."
+}
+
+variable "lb_config_check_interval" {
+  default     = 60
+  type        = number
+  description = "How often, in seconds, to check that backends are up and serving requests."
+}
+
+variable "lb_config_check_timeout" {
+  default     = 30
+  type        = number
+  description = "How long, in seconds, to wait for a check attempt before considering it failed. (1-30)"
 }

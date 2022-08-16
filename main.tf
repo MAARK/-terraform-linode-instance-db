@@ -1,5 +1,6 @@
 locals {
-  db_name = var.db_name != "" ? var.db_name : var.label
+  db_name   = var.db_name != "" ? var.db_name : var.label
+  create_lb = var.instance_count > 1 ? 1 : 0
 }
 
 resource "random_string" "db_passord" {
@@ -12,14 +13,18 @@ resource "random_string" "inst_root_passord" {
 }
 
 resource "linode_instance" "this" {
-  image           = var.image
-  label           = var.label
-  region          = var.region
-  type            = var.instance_type
-  authorized_keys = var.authorized_keys
-  root_pass       = random_string.inst_root_passord.result
-  stackscript_id  = linode_stackscript.this.id
-  tags            = var.tags
+  count            = var.instance_count
+  image            = var.instance_image
+  label            = var.instance_count > 1 ? "${var.label}-${count.index}" : var.label
+  region           = var.region
+  type             = var.instance_type
+  authorized_keys  = var.authorized_keys
+  root_pass        = random_string.inst_root_passord.result
+  stackscript_id   = linode_stackscript.this.id
+  private_ip       = var.instance_private_ip
+  backups_enabled  = var.instance_backups_enabled
+  watchdog_enabled = var.instance_watchdog_enabled
+  tags             = var.tags
 }
 
 resource "linode_stackscript" "this" {
@@ -35,7 +40,7 @@ resource "linode_stackscript" "this" {
       stackscript_extend = try(var.stackscript_extend, "")
     }
   )
-  images   = [var.image]
+  images   = [var.instance_image]
   rev_note = "initial version"
 }
 
@@ -59,3 +64,57 @@ resource "linode_database_mysql" "this" {
   }
   */
 }
+
+resource "linode_nodebalancer" "this" {
+  count                = local.create_lb
+  label                = var.label
+  region               = var.region
+  client_conn_throttle = var.lb_client_conn_throttle
+  tags                 = var.tags
+}
+
+resource "linode_nodebalancer_config" "http" {
+  nodebalancer_id = linode_nodebalancer.this[0].id
+  port            = 80
+  protocol        = "http"
+  check           = "http"
+  check_path      = var.lb_config_check_path
+  check_attempts  = 3
+  check_interval  = var.lb_config_check_interval
+  check_timeout   = var.lb_config_check_timeout
+  stickiness      = "http_cookie"
+  algorithm       = "source"
+}
+
+resource "linode_nodebalancer_node" "http" {
+  count           = var.instance_count
+  nodebalancer_id = linode_nodebalancer.this[0].id
+  config_id       = linode_nodebalancer_config.http.id
+  address         = "${linode_instance.this[count.index].private_ip_address}:80"
+  label           = "${var.label}-${count.index}"
+  weight          = 50
+}
+
+/* TODO Add cert
+resource "linode_nodebalancer_config" "https" {
+  nodebalancer_id = linode_nodebalancer.this[0].id
+  port            = 443
+  protocol        = "https"
+  check           = "http"
+  check_path      = var.lb_config_check_path
+  check_attempts  = 3
+  check_interval  = var.lb_config_check_interval
+  check_timeout   = var.lb_config_check_timeout
+  stickiness      = "http_cookie"
+  algorithm       = "source"
+}
+
+resource "linode_nodebalancer_node" "https" {
+  count           = var.instance_count
+  nodebalancer_id = linode_nodebalancer.this[0].id
+  config_id       = linode_nodebalancer_config.https.id
+  address         = "${linode_instance.this[count.index].private_ip_address}:80"
+  label           = "${var.label}-${count.index}"
+  weight          = 50
+}
+*/
