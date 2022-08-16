@@ -26,8 +26,20 @@ variable "instance_type" {
 }
 
 variable "instance_private_ip" {
-  type    = bool
-  default = true
+  type        = bool
+  default     = true
+  description = " (Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled"
+}
+
+variable "instance_backups_enabled" {
+  default     = true
+  type        = bool
+  description = "(Optional) If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service"
+}
+variable "instance_watchdog_enabled" {
+  default     = true
+  type        = bool
+  description = "The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly."
 }
 
 variable "group" {

@@ -13,16 +13,18 @@ resource "random_string" "inst_root_passord" {
 }
 
 resource "linode_instance" "this" {
-  count           = var.instance_count
-  image           = var.instance_image
-  label           = var.instance_count > 1 ? "${var.label}-${count.index}" : var.label
-  region          = var.region
-  type            = var.instance_type
-  authorized_keys = var.authorized_keys
-  root_pass       = random_string.inst_root_passord.result
-  stackscript_id  = linode_stackscript.this.id
-  private_ip      = var.instance_private_ip
-  tags            = var.tags
+  count            = var.instance_count
+  image            = var.instance_image
+  label            = var.instance_count > 1 ? "${var.label}-${count.index}" : var.label
+  region           = var.region
+  type             = var.instance_type
+  authorized_keys  = var.authorized_keys
+  root_pass        = random_string.inst_root_passord.result
+  stackscript_id   = linode_stackscript.this.id
+  private_ip       = var.instance_private_ip
+  backups_enabled  = var.instance_backups_enabled
+  watchdog_enabled = var.instance_watchdog_enabled
+  tags             = var.tags
 }
 
 resource "linode_stackscript" "this" {
