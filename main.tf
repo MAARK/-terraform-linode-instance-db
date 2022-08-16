@@ -73,7 +73,7 @@ resource "linode_nodebalancer" "this" {
   tags                 = var.tags
 }
 
-resource "linode_nodebalancer_config" "this" {
+resource "linode_nodebalancer_config" "http" {
   nodebalancer_id = linode_nodebalancer.this[0].id
   port            = 80
   protocol        = "http"
@@ -86,11 +86,35 @@ resource "linode_nodebalancer_config" "this" {
   algorithm       = "source"
 }
 
-resource "linode_nodebalancer_node" "this" {
+resource "linode_nodebalancer_node" "http" {
   count           = var.instance_count
   nodebalancer_id = linode_nodebalancer.this[0].id
-  config_id       = linode_nodebalancer_config.this.id
+  config_id       = linode_nodebalancer_config.http.id
   address         = "${linode_instance.this[count.index].private_ip_address}:80"
   label           = "${var.label}-${count.index}"
   weight          = 50
 }
+
+/* TODO Add cert
+resource "linode_nodebalancer_config" "https" {
+  nodebalancer_id = linode_nodebalancer.this[0].id
+  port            = 443
+  protocol        = "https"
+  check           = "http"
+  check_path      = var.lb_config_check_path
+  check_attempts  = 3
+  check_interval  = var.lb_config_check_interval
+  check_timeout   = var.lb_config_check_timeout
+  stickiness      = "http_cookie"
+  algorithm       = "source"
+}
+
+resource "linode_nodebalancer_node" "https" {
+  count           = var.instance_count
+  nodebalancer_id = linode_nodebalancer.this[0].id
+  config_id       = linode_nodebalancer_config.https.id
+  address         = "${linode_instance.this[count.index].private_ip_address}:80"
+  label           = "${var.label}-${count.index}"
+  weight          = 50
+}
+*/

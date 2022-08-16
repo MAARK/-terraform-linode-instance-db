@@ -32,8 +32,8 @@ No modules.
 | [linode_database_mysql.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/database_mysql) | resource |
 | [linode_instance.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance) | resource |
 | [linode_nodebalancer.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer) | resource |
-| [linode_nodebalancer_config.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer_config) | resource |
-| [linode_nodebalancer_node.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer_node) | resource |
+| [linode_nodebalancer_config.http](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer_config) | resource |
+| [linode_nodebalancer_node.http](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer_node) | resource |
 | [linode_stackscript.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/stackscript) | resource |
 | [random_string.db_passord](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [random_string.inst_root_passord](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
