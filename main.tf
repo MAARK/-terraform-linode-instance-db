@@ -78,9 +78,10 @@ resource "linode_nodebalancer_config" "this" {
   port            = 80
   protocol        = "http"
   check           = "http"
-  check_path      = "/foo"
+  check_path      = var.lb_config_check_path
   check_attempts  = 3
-  check_timeout   = 30
+  check_interval  = var.lb_config_check_interval
+  check_timeout   = var.lb_config_check_timeout
   stickiness      = "http_cookie"
   algorithm       = "source"
 }

@@ -59,6 +59,9 @@ No modules.
 | <a name="input_instance_watchdog_enabled"></a> [instance\_watchdog\_enabled](#input\_instance\_watchdog\_enabled) | The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. | `bool` | `true` | no |
 | <a name="input_label"></a> [label](#input\_label) | The base name for the stack | `string` | n/a | yes |
 | <a name="input_lb_client_conn_throttle"></a> [lb\_client\_conn\_throttle](#input\_lb\_client\_conn\_throttle) | value for Nodebalanacer client\_conn\_throttle | `number` | `0` | no |
+| <a name="input_lb_config_check_interval"></a> [lb\_config\_check\_interval](#input\_lb\_config\_check\_interval) | How often, in seconds, to check that backends are up and serving requests. | `number` | `60` | no |
+| <a name="input_lb_config_check_path"></a> [lb\_config\_check\_path](#input\_lb\_config\_check\_path) | (Optional) The URL path to check on each backend. If the backend does not respond to this request it is considered to be down. | `string` | `"/health"` | no |
+| <a name="input_lb_config_check_timeout"></a> [lb\_config\_check\_timeout](#input\_lb\_config\_check\_timeout) | How long, in seconds, to wait for a check attempt before considering it failed. (1-30) | `number` | `30` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Required) This is the location where the Linode is deployed. Examples are ＂us-east＂, ＂us-west＂, ＂ap-south＂, etc. See all regions here. Changing region forces the creation of a new Linode Instance | `string` | `"us-east"` | no |
 | <a name="input_stackscript_data"></a> [stackscript\_data](#input\_stackscript\_data) | Map of required StackScript UDF data. | `map(any)` | `{}` | no |
 | <a name="input_stackscript_extend"></a> [stackscript\_extend](#input\_stackscript\_extend) | appeded to the base stack script that provides mysql access. | `string` | `""` | no |

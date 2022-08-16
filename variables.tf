@@ -121,3 +121,21 @@ variable "lb_client_conn_throttle" {
   type        = number
   description = "value for Nodebalanacer client_conn_throttle"
 }
+
+variable "lb_config_check_path" {
+  default     = "/health"
+  type        = string
+  description = "(Optional) The URL path to check on each backend. If the backend does not respond to this request it is considered to be down."
+}
+
+variable "lb_config_check_interval" {
+  default     = 60
+  type        = number
+  description = "How often, in seconds, to check that backends are up and serving requests."
+}
+
+variable "lb_config_check_timeout" {
+  default     = 30
+  type        = number
+  description = "How long, in seconds, to wait for a check attempt before considering it failed. (1-30)"
+}
