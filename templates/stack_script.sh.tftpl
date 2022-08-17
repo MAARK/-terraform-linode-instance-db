@@ -1,8 +1,5 @@
 #!/bin/bash
 # vim: ft=sh tftp
-## NOt a propper tf template atm but adding so that when iits ready to be its easier  ot use as one.
-
-exec > >(tee /dev/ttyS0 /var/log/stackscript.log) 2>&1
 
 set -xo pipefail
 
@@ -16,7 +13,6 @@ export DB_HOST=${db_host}
 export DB_USER=${db_user}
 export DB_NAME=${db_name}
 export DB_PASSWORD=${db_password}
-
 
 echo "EOF Main Script"
 echo "BOF Extended Script"
