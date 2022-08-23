@@ -1,6 +1,7 @@
 locals {
-  db_name   = var.db_name != "" ? var.db_name : var.label
-  create_lb = var.instance_count > 1 ? 1 : 0
+  db_name              = var.db_name != "" ? var.db_name : var.label
+  create_lb            = var.instance_count > 1 ? 1 : 0
+  private_ip_addresses = toset([for e in linode_instance.this : e.private_ip_address])
 }
 
 resource "random_string" "db_passord" {
@@ -64,7 +65,12 @@ resource "linode_database_mysql" "this" {
   }
   */
 }
+resource "linode_database_access_controls" "this" {
+  database_id   = linode_database_mysql.this.id
+  database_type = "mysql"
 
+  allow_list = local.private_ip_addresses
+}
 resource "linode_nodebalancer" "this" {
   count                = local.create_lb
   label                = var.label
