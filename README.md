@@ -18,8 +18,8 @@ Optional can put instances behind a load balancer.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_linode"></a> [linode](#provider\_linode) | 1.28.1 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.3.2 |
+| <a name="provider_linode"></a> [linode](#provider\_linode) | 1.29.1 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
 
 ## Modules
 
@@ -29,6 +29,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [linode_database_access_controls.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/database_access_controls) | resource |
 | [linode_database_mysql.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/database_mysql) | resource |
 | [linode_instance.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance) | resource |
 | [linode_nodebalancer.this](https://registry.terraform.io/providers/linode/linode/latest/docs/resources/nodebalancer) | resource |
@@ -52,10 +53,10 @@ No modules.
 | <a name="input_db_type"></a> [db\_type](#input\_db\_type) | Options avaible by running `linode-cli databases types` | `string` | `"g6-nanode-1"` | no |
 | <a name="input_group"></a> [group](#input\_group) | n/a | `string` | `""` | no |
 | <a name="input_instance_backups_enabled"></a> [instance\_backups\_enabled](#input\_instance\_backups\_enabled) | (Optional) If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service | `bool` | `true` | no |
-| <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | number of instances. if more than 1 ins selected a Node ballancer will be created and traffic served through it. | `number` | `1` | no |
-| <a name="input_instance_image"></a> [instance\_image](#input\_instance\_image) | Options avaible by running `linode-cli images list` | `string` | `"linode/alpine3.16"` | no |
+| <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | number of instances. if more than 1 is selected a Node ballancer will be created and traffic served through it. | `number` | `1` | no |
+| <a name="input_instance_image"></a> [instance\_image](#input\_instance\_image) | Base Image forthe instance(s). Options avaible by running `linode-cli images list` | `string` | `"linode/alpine3.16"` | no |
 | <a name="input_instance_private_ip"></a> [instance\_private\_ip](#input\_instance\_private\_ip) | (Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled | `bool` | `true` | no |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | n/a | `string` | `"g6-standard-1"` | no |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Linode Instance type. Get options avaible by running `linode-cli images list` | `string` | `"g6-standard-1"` | no |
 | <a name="input_instance_watchdog_enabled"></a> [instance\_watchdog\_enabled](#input\_instance\_watchdog\_enabled) | The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. | `bool` | `true` | no |
 | <a name="input_label"></a> [label](#input\_label) | The base name for the stack | `string` | n/a | yes |
 | <a name="input_lb_client_conn_throttle"></a> [lb\_client\_conn\_throttle](#input\_lb\_client\_conn\_throttle) | value for Nodebalanacer client\_conn\_throttle | `number` | `0` | no |
@@ -66,7 +67,7 @@ No modules.
 | <a name="input_stackscript_data"></a> [stackscript\_data](#input\_stackscript\_data) | Map of required StackScript UDF data. | `map(any)` | `{}` | no |
 | <a name="input_stackscript_extend"></a> [stackscript\_extend](#input\_stackscript\_extend) | appeded to the base stack script that provides mysql access. | `string` | `""` | no |
 | <a name="input_swap_space"></a> [swap\_space](#input\_swap\_space) | n/a | `number` | `256` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | n/a | `list(any)` | `[]` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tage to be added to the `linode_instance` and and any other resource that had tags | `list(any)` | `[]` | no |
 
 ## Outputs
 

@@ -12,17 +12,19 @@ variable "region" {
 variable "instance_image" {
   default     = "linode/alpine3.16"
   type        = string
-  description = "Options avaible by running `linode-cli images list`"
+  description = "Base Image forthe instance(s). Options avaible by running `linode-cli images list`"
 }
 
 variable "tags" {
-  default = []
-  type    = list(any)
+  default     = []
+  type        = list(any)
+  description = "Tage to be added to the `linode_instance` and and any other resource that had tags"
 }
 
 variable "instance_type" {
-  type    = string
-  default = "g6-standard-1"
+  type        = string
+  default     = "g6-standard-1"
+  description = "Linode Instance type. Get options avaible by running `linode-cli images list`"
 }
 
 variable "instance_private_ip" {
@@ -70,7 +72,7 @@ variable "authorized_keys" {
 variable "instance_count" {
   default     = 1
   type        = number
-  description = "number of instances. if more than 1 ins selected a Node ballancer will be created and traffic served through it."
+  description = "number of instances. if more than 1 is selected a Node ballancer will be created and traffic served through it."
 }
 
 #db settings
