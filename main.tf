@@ -34,7 +34,7 @@ resource "linode_stackscript" "this" {
   script = templatefile(
     "${path.module}/templates/stack_script.sh.tftpl",
     {
-      db_host            = linode_database_mysql.this.host_primary,
+      db_host            = linode_database_mysql.this.host_secondary,
       db_user            = linode_database_mysql.this.root_username,
       db_name            = local.db_name,
       db_password        = linode_database_mysql.this.root_password,
