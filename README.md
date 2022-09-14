@@ -12,14 +12,14 @@ Optional can put instances behind a load balancer.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
-| <a name="requirement_linode"></a> [linode](#requirement\_linode) | >= 1.28 |
+| <a name="requirement_linode"></a> [linode](#requirement\_linode) | >= 1.29 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_linode"></a> [linode](#provider\_linode) | 1.29.1 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
+| <a name="provider_linode"></a> [linode](#provider\_linode) | 1.29.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 
 ## Modules
 

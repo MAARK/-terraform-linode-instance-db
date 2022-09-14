@@ -1,4 +1,3 @@
-
 terraform {
   required_version = ">= 1.1"
   required_providers {
@@ -6,6 +5,9 @@ terraform {
       source  = "linode/linode"
       version = ">= 1.28"
     }
-    random = ">= 3.4"
+    random = {
+      source  = "hashicorp/random"
+      version = "3.4.3"
+    }
   }
 }
